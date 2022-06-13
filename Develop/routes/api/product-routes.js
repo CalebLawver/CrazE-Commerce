@@ -11,11 +11,11 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Category,          
-        attributes: ['id', 'category_name']
+        attributes: ['category_name']
       },
       {
         model: Tag,
-        attributes: ['id', 'tag_name']
+        attributes: ['tag_name']
       }
     ]
   })
@@ -37,11 +37,11 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Category,
-        attributes: ['id', 'category_name']
+        attributes: ['category_name']
       },
       {
         model: Tag,
-        attributes: ['id', 'tag_name']
+        attributes: ['tag_name']
       }
     ]
   })
@@ -128,6 +128,22 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbProductData => {
+    if (!dbProductData) {
+      res.status(404).json({ message: 'No product with that id' });
+      return;
+    }
+    res.json(dbProductData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 });
 
-module.exports = router;
+module.exports = router
