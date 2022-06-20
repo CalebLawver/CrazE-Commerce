@@ -25,3 +25,6 @@
 * Source the DB, "source db/schema.sql"
 * Exit the MySql shell and seed the DB, "npm run seed".
 * Now you can connect to the server, "npm start".
+
+## Installation & Insomnia video
+* https://drive.google.com/file/d/1Zw281WRaPNNlyHHEf_8PkhDli7Ci_fKe/view
